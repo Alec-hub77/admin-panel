@@ -1,6 +1,7 @@
 import React from 'react';
 
 import StatusCard from '../components/status-card/StatusCard';
+import Table from '../components/table/Table';
 
 import Chart from 'react-apexcharts';
 
@@ -51,6 +52,68 @@ const chartOptions = {
   },
 };
 
+const topCustomers = {
+  head: [
+    'user',
+    'total orders',
+    'total spending'
+  ],
+  body: [
+    {
+      id: "#OD1711",
+      user: "john doe",
+      date: "17 Jun 2021",
+      price: "$900",
+      status: "shipping"
+  },
+  {
+      id: "#OD1712",
+      user: "frank iva",
+      date: "1 Jun 2021",
+      price: "$400",
+      status: "paid"
+  },
+  {
+      id: "#OD1713",
+      user: "anthony baker",
+      date: "27 Jun 2021",
+      price: "$200",
+      status: "pending"
+  },
+  {
+      id: "#OD1712",
+      user: "frank iva",
+      date: "1 Jun 2021",
+      price: "$400",
+      status: "paid"
+  },
+  {
+      id: "#OD1713",
+      user: "anthony baker",
+      date: "27 Jun 2021",
+      price: "$200",
+      status: "refund"
+  }
+  ]
+}
+
+const renderCustomerHead = (item, index) => (
+  <th key={index}>
+    {item}
+  </th>
+)
+
+const renderCustomerBody = (item, index) => (
+  <tr key={index}>
+    <td>{item.id}</td>
+    <td>{item.user}</td>
+    <td>{item.price}</td>
+    <td>{item.date}</td>
+  </tr>
+)
+
+
+
 const Dashboard = () => {
   return (
     <div>
@@ -85,10 +148,22 @@ const Dashboard = () => {
               <h3>Top customers</h3>
             </div>
             <div className="car__body">
-              {/* table */}
+              <Table 
+                headData={topCustomers.head}
+                renderHead={(item, index) => renderCustomerHead(item, index)}
+                bodyData={topCustomers.body}
+                renderBody={(item, index) => renderCustomerBody(item, index)}
+              />
             </div>
             <div className="card__footer">
               <Link to={'/'}>view all</Link>
+            </div>
+          </div>
+        </div>
+        <div className="col-8">
+          <div className="card">
+            <div className="card__header">
+              <h3>lates orders</h3>
             </div>
           </div>
         </div>
